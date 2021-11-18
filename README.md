@@ -28,7 +28,7 @@ Users should be able to:
 
 ### Links
 
-[Live View](https://bague-rodnel.github.io/ping-coming-soon/)
+[Live View](https://bague-rodnel.github.io/huddle-landing-page/)
 
 ## My process
 
