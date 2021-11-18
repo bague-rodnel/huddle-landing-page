@@ -192,9 +192,11 @@ header .logo {
 
   .intro {
     background-image: url(../images/bg-desktop.svg);
-    background-size: auto;
+    background-size: auto 100%;
     padding-top: calc( 94px + (43) * ((100vw - 992px) / (448)) );
-    padding-bottom: calc( 27.5px + (12.5) * ((100vw - 992px) / (448)) );
+    padding-bottom: 0;
+    min-height: calc( 551px + (249) * ((100vw - 992px) / (448)) );
+    height: 100vh;
   }
   .intro .container {
     display: flex;
