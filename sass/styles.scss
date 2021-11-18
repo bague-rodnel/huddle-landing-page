@@ -1,0 +1,350 @@
+@use "sass:math";
+
+@function fluid($min, $max, $minvw: 375px, $maxvw: 750px) {
+  @return calc(
+    #{$min} + (#{math.div($max - $min, 1px)}) * ((100vw - #{$minvw}) /
+          (#{math.div($maxvw - $minvw, 1px)}))
+  );
+}
+
+$color-violet: hsl(257, 40%, 49%);
+$color-magenta-soft: hsl(300, 69%, 71%);
+$color-magenta: hsl(300, 100%, 50%);
+$font-wt-reg: 400;
+$font-wt-bold: 600;
+
+*,
+::before,
+::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: $color-violet;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  vertical-align: middle;
+  width: 100%;
+}
+
+.container {
+  width: fluid(300px, 600px);
+  margin: 0 auto;
+}
+
+header {
+  position: relative;
+  z-index: 1;
+
+  height: fluid(62px, 124px);
+
+  display: flex;
+  align-items: flex-end;
+
+  .logo {
+    width: fluid(124px, 248px);
+  }
+}
+
+// section
+.intro {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  background: url(../images/bg-mobile.svg), $color-violet;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: left 0 top 0;
+  padding-top: fluid(96px, 192px);
+  padding-bottom: fluid(40px, 80px);
+
+  color: white;
+  text-align: center;
+  font-weight: $font-wt-reg;
+
+  picture {
+    padding: fluid(28px, 56px) 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .content {
+    position: relative;
+    height: fluid(393px, 786px);
+    padding-top: fluid(35px, 70px);
+    padding-bottom: fluid(40px, 80px);
+
+    h1 {
+      margin-bottom: fluid(18px, 36px);
+      font-size: fluid(23px, 46px);
+      font-weight: $font-wt-bold;
+    }
+
+    .caption {
+      margin-bottom: fluid(24px, 48px);
+      font-size: fluid(14.5px, 29px);
+      line-height: 1.6;
+    }
+
+    .btn-register {
+      display: block;
+      width: fluid(200px, 400px);
+      height: fluid(40px, 80px);
+      border-radius: 500px;
+      background-color: white;
+      box-shadow: 0.33em 0.33em 0.5em hsla(0, 0, 0, 0.3);
+      cursor: pointer;
+      margin: 0 auto;
+      color: $color-violet;
+      font-size: fluid(12.5px, 25px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background-color: $color-magenta-soft;
+        color: white;
+      }
+    }
+
+    .social-media {
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: fluid(116px, 232px);
+      height: fluid(28px, 56px);
+
+      display: flex;
+      justify-content: space-around;
+
+      .icon {
+        // flex: 1;
+        border: 1px solid white;
+        border-radius: 50%;
+        height: fluid(28px, 56px);
+        width: fluid(28px, 56px);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          color: $color-magenta;
+          border-color: $color-magenta;
+        }
+      }
+    }
+  }
+
+  .attribution {
+    position: absolute;
+    bottom: 0;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 11px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .attribution a {
+    color: $color-magenta;
+  }
+}
+
+@media (min-width: 751px) {
+  .container {
+    max-width: 600px;
+  }
+
+  header {
+    height: 124px;
+
+    .logo {
+      width: 248px;
+    }
+  }
+
+  .intro {
+    padding-top: 192px;
+    padding-bottom: 80px;
+
+    picture {
+      padding: 56px 0;
+    }
+
+    .content {
+      height: 786px;
+      padding-top: 70px;
+      padding-bottom: 80px;
+
+      h1 {
+        margin-bottom: 36px;
+        font-size: 46px;
+      }
+
+      .caption {
+        margin-bottom: 48px;
+        font-size: 29px;
+      }
+
+      .btn-register {
+        width: 400px;
+        height: 80px;
+        font-size: 25px;
+      }
+
+      .social-media {
+        width: 232px;
+        height: 56px;
+
+        .icon {
+          height: 56px;
+          width: 56px;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    max-width: none;
+    width: fluid(892px, 1294px, 992px, 1440px);
+  }
+
+  header {
+    height: fluid(67px, 97px, 992px, 1440px);
+
+    .logo {
+      width: fluid(141px, 205px, 992px, 1440px);
+    }
+  }
+
+  .intro {
+    background-image: url(../images/bg-desktop.svg);
+    background-size: auto;
+    padding-top: fluid(94px, 137px, 992px, 1440px);
+    padding-bottom: fluid(27.5px, 40px, 992px, 1440px);
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    picture {
+      width: fluid(488px, 709px, 992px, 1440px);
+      padding: fluid(40px, 58px, 992px, 1440px) 0;
+    }
+
+    .content {
+      width: fluid(403px, 585px, 992px, 1440px);
+      height: fluid(456px, 662px, 992px, 1440px);
+      padding-top: fluid(70px, 102px, 992px, 1440px);
+      padding-left: fluid(36px, 53px, 992px, 1440px);
+      text-align: left;
+
+      h1 {
+        font-size: fluid(27.5px, 40px, 992px, 1440px);
+        margin-bottom: fluid(16px, 24px, 992px, 1440px);
+      }
+
+      .caption {
+        margin-bottom: fluid(15px, 22px, 992px, 1440px);
+        font-size: fluid(12px, 17px, 992px, 1440px);
+      }
+
+      .btn-register {
+        width: fluid(138px, 200px, 992px, 1440px);
+        height: fluid(38.5px, 56px, 992px, 1440px);
+        font-size: fluid(13px, 19px, 992px, 1440px);
+        margin-left: 0;
+      }
+
+      .social-media {
+        transform: none;
+        right: 0;
+
+        height: fluid(27.5px, 40px, 992px, 1440px);
+        width: fluid(114px, 166px, 992px, 1440px);
+
+        .icon {
+          height: fluid(27.5px, 40px, 992px, 1440px);
+          width: fluid(27.5px, 40px, 992px, 1440px);
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .container {
+    width: 1294px;
+  }
+
+  header {
+    height: 97px;
+
+    .logo {
+      width: 205px;
+    }
+  }
+
+  .intro {
+    padding-top: 137px;
+    padding-bottom: 40px;
+
+    picture {
+      width: 709px;
+      padding: 58px 0;
+    }
+
+    .content {
+      width: 585px;
+      height: 622px;
+      padding-top: 102px;
+      padding-left: 53px;
+
+      h1 {
+        font-size: 40px;
+        margin-bottom: 24px;
+      }
+
+      .caption {
+        margin-bottom: 22px;
+        font-size: 17px;
+      }
+
+      .btn-register {
+        width: 200px;
+        height: 56px;
+        font-size: 19px;
+      }
+
+      .social-media {
+        height: 40px;
+        width: 166px;
+
+        .icon {
+          height: 40px;
+          width: 40px;
+        }
+      }
+    }
+  }
+}
